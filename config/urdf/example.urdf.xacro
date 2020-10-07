@@ -43,7 +43,7 @@
     </link>
 
     <xacro:include filename="$(find rslidar_sdk)/config/urdf/RSBPearl_raysim.urdf.xacro"/>
-    <xacro:RSBPearl_raysim parent="base_rslidar" name="rslidar" topic="/rslidar_points" hz="10" samples="1800" gpu="${gpu}">
+    <xacro:RSBPearl_raysim parent="base_rslidar" name="rslidar_optical_center" topic="/rslidar_points" hz="10" samples="1800" gpu="${gpu}">
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:RSBPearl_raysim>
 
