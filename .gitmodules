@@ -1,3 +1,0 @@
-[submodule "rs_driver"]
-	path = rs_driver
-	url = https://github.com/wyca-robotics/rs_driver
