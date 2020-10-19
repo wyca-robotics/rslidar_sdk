@@ -3,8 +3,9 @@
   <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen">
   </node>
 
-  <node pkg="rosbag" type="record" name="rosbag_record_rslidar"
-        args="record --split --duration=5m -o $(env HOME)/.ros/rslidar /odom /tf_static /tf /scan /rslidar_points"/>
+  <include file ="$(find rslidar_sdk)/launch/record.launch">
+  </include>
+
   <!-- rviz-->
   <!-- <node pkg="rviz" name="rviz" type="rviz" args="-opengl 210 -d $(find rslidar_sdk)/rviz/rviz.rviz" /-->
 </launch>
