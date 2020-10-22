@@ -58,6 +58,16 @@ lidar:
       msop_send_port: 60022                       #The port number which the msop packets will be send to 
       difop_send_port: 60023                      #The port number which the difop packets will be send to 
       packet_send_ip: 127.0.0.1                  #The ip address which the lidar packets will be send to
+  - ucwp:
+      lidar_ip: 10.100.100.1
+      pc_ip: 10.100.100.100
+      mac_addr:
+      msop_port: 6699
+      difop_port: 7788
+      FOV_start: 0
+      FOV_stop: 36000
+      time:
+      motor_phase_lock:
 
 
 

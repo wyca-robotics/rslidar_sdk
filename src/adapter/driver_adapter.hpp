@@ -22,7 +22,9 @@
 #pragma once
 
 #include "adapter/adapter_base.h"
+#include "msg/rs_msg/lidar_config_msg.h"
 #include "rs_driver/api/lidar_driver.h"
+
 namespace robosense
 {
 namespace lidar
@@ -45,6 +47,7 @@ public:
   void init(const YAML::Node& config)
   {
     lidar::RSDriverParam driver_param;
+    lidar::LidarConfigMsg lidar_param;
     int msg_source;
     std::string lidar_type;
     uint16_t split_frame_mode;
@@ -71,6 +74,18 @@ public:
     yamlRead<std::string>(driver_config, "pcap_path", driver_param.input_param.pcap_path, "");
     driver_param.lidar_type = driver_param.strToLidarType(lidar_type);
     driver_param.decoder_param.split_frame_mode = SplitFrameMode(split_frame_mode);
+
+
+    YAML::Node lidar_config = yamlSubNodeAbort(config, "ucwp");
+    yamlRead<std::string>(lidar_config, "lidar_ip", lidar_param.lidar_ip, "192.168.1.200");
+    yamlRead<std::string>(lidar_config, "pc_ip", lidar_param.pc_ip, "192.168.1.102");
+    yamlRead<std::string>(lidar_config, "pc_ip", lidar_param.mac_addr, "");
+    yamlRead<int>(lidar_config, "msop_port", lidar_param.msop_port, 6699);
+    yamlRead<int>(lidar_config, "difop_port", lidar_param.difop_port, 7788);
+    yamlRead<int>(lidar_config, "start_angle", lidar_param.start_angle, 0);
+    yamlRead<int>(lidar_config, "end_angle", lidar_param.end_angle, 36000);
+    yamlRead<int>(lidar_config, "motor_phase_lock", lidar_param.motor_phase_lock, 0);
+
     if (config["camera"] && config["camera"].Type() != YAML::NodeType::Null)
     {
       for (size_t i = 0; i < config["camera"].size(); i++)
